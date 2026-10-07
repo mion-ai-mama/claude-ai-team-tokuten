@@ -1,0 +1,334 @@
+/* components.css — このページ専用の部品（ラベル・チームの図・結果の例・チェックリスト・FAQ）。
+   色は style.css の :root の値を使う */
+
+/* ============================================================
+   このページ専用の部品
+   ============================================================ */
+
+/* ---------- 小さなラベル（有料プラン・デスクトップ版・順次展開中・無料でもOK） ---------- */
+
+.tag {
+  display: inline-block;
+  margin: 0 0.35em 0.2em 0;
+  padding: 0.1em 0.75em;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.tag--paid {
+  background: #fbe3e8;
+  color: #a02448;
+  border-color: #f2c3cf;
+}
+.tag--desktop {
+  background: #f1e6df;
+  color: #6b4a3e;
+  border-color: #e3d0c5;
+}
+.tag--rollout {
+  background: #fff3d6;
+  color: #7a5200;
+  border-color: #f0dcaa;
+}
+.tag--free {
+  background: #eafaf1;
+  color: #1a7a49;
+  border-color: #bfe9d2;
+}
+.tag--small-note {
+  background: #fff;
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+  font-weight: 700;
+}
+.tag-row {
+  margin: -0.5rem 0 1.25rem;
+  text-align: center;
+}
+
+/* ---------- まず知っておいてほしいこと ---------- */
+
+.know-box {
+  text-align: left;
+  margin: 0 0 1.25rem;
+  padding: 1.1rem 1.1rem 0.9rem;
+  background: #fff;
+  border: 2px solid var(--color-accent-light);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 28px -18px var(--color-card-shadow);
+}
+.know-box__title {
+  margin: 0 0 0.75rem;
+  text-align: center;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  font-size: 1.05rem;
+}
+.know-box__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.know-box__list li {
+  padding: 0.7rem 0;
+  border-top: 1px dashed var(--color-accent-light);
+}
+.know-box__list li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.know-box__list p {
+  margin: 0.15rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.know-box__more {
+  margin: 0.4rem 0 0;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+/* ---------- 安全チェック ---------- */
+
+.safety-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75em;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  min-height: 44px;
+}
+.safety-list input {
+  flex: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 0.2em;
+  accent-color: var(--color-primary);
+}
+
+/* ---------- 補助パーツ ---------- */
+
+.note-box--warn {
+  border-left-color: #e0a526;
+  border-color: #f0dcaa;
+  background: #fffaf0;
+}
+.note-box .tag {
+  margin-bottom: 0;
+}
+.card-grid--four {
+  grid-template-columns: 1fr 1fr;
+}
+@media (min-width: 640px) {
+  .card-grid--four {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.card-grid--four .card {
+  flex-direction: column;
+  text-align: center;
+  padding: 1rem 0.6rem;
+  gap: 0.5rem;
+}
+
+.fill {
+  background: #fff3d6;
+  border-radius: 4px;
+  padding: 0 0.15em;
+  font-weight: 700;
+}
+.fill-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.section__small {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+.muted {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+.link-list {
+  margin: 0 0 1rem;
+  padding-left: 1.3em;
+}
+.link-list li {
+  margin-bottom: 0.5em;
+}
+
+/* ---------- 困ったとき（折りたたみ） ---------- */
+
+.faq {
+  display: grid;
+  gap: 0.6rem;
+}
+.faq details {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.6;
+}
+.faq details p {
+  margin: 0.7rem 0 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- 5ステップの全体像 ---------- */
+
+.step-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.step-list li {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.step-list__num {
+  flex: none;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--color-accent-light);
+  color: var(--color-primary-dark);
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+.step-list small {
+  display: block;
+  margin-top: 0.1em;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ---------- 3人のチームの図 ---------- */
+
+.team-flow {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.team-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.15rem;
+  box-shadow: 0 12px 28px -18px var(--color-card-shadow);
+}
+.team-card--main {
+  border: 2px solid var(--color-primary);
+}
+.team-card p {
+  margin: 0 0 0.4em;
+  font-size: 0.93rem;
+  line-height: 1.75;
+}
+.team-card p:last-child {
+  margin-bottom: 0;
+}
+.team-card__role {
+  font-weight: 800;
+  font-size: 1.05rem !important;
+  color: var(--color-primary-dark);
+}
+.team-card__dont {
+  color: var(--color-text-muted);
+}
+.team-flow__arrow {
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--color-primary);
+}
+
+/* ---------- 作られるファイルの一覧 ---------- */
+
+.file-list {
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.file-list li {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.file-list code,
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--color-bg-soft);
+  border-radius: 6px;
+  padding: 0.1em 0.45em;
+  word-break: break-all;
+}
+.file-list span {
+  display: block;
+  color: var(--color-text-muted);
+}
+
+/* ---------- 実際に動かした例 ---------- */
+
+.example {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  margin: 0 0 0.9rem;
+}
+.example--script {
+  border: 2px solid var(--color-primary);
+}
+.example__title {
+  margin: 0 0 0.3rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+}
+.example__body {
+  margin: 0 0 0.9em;
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+.example__body:last-child,
+.example .check-list:last-child {
+  margin-bottom: 0;
+}
+.tag-row-left {
+  margin: 1rem 0 0;
+}

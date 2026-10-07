@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claudeで「AIチーム」を作るはじめてガイド</title>
+<meta name="description" content="AIを1人の助手から、リサーチ・分析・台本の3人チームへ。Claude Codeでリール台本づくりのAIチームを作る方法を、コピペで使えるプロンプト付きで解説する無料ガイドです。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Claudeで「AIチーム」を作るはじめてガイド">
+<meta property="og:description" content="1人の助手から、3人のチームへ。コピペで作れるプロンプト付きの無料ガイド。">
+<meta property="og:url" content="https://mion-ai-mama.github.io/claude-ai-team-tokuten/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#d03f64">
+<link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<main id="main">
+
+  <!-- ===== SECTION 01 ファーストビュー ===== -->
+  <section class="hero" id="hero" aria-label="ページ紹介">
+    <div class="hero__inner">
+      <p class="hero__label">コピペで使えるプロンプト付き</p>
+      <h1 class="hero__title">Claudeで<br>「AIチーム」を作る<br>はじめてガイド</h1>
+      <p class="hero__subtitle">1人の助手から、<strong>3人のチーム</strong>へ。<br>リサーチ → 分析 → 台本を、順番に任せます。</p>
+
+      <div class="know-box" id="know">
+        <p class="know-box__title">まず知っておいてほしいこと</p>
+        <ul class="know-box__list">
+          <li>
+            <span class="tag tag--paid">有料プラン</span>
+            <p>チームを作る機能（Claude Code）は、<strong>Pro以上の有料プラン</strong>で使えます。無料版では使えません。</p>
+          </li>
+          <li>
+            <span class="tag tag--desktop">デスクトップ版</span>
+            <p>Claudeの<strong>デスクトップアプリ</strong>の「Code」で作ります。パソコン内のフォルダを使うためです。</p>
+          </li>
+          <li>
+            <span class="tag tag--free">安全のために</span>
+            <p>練習用のフォルダで試します。チームは<strong>投稿や送信をしません</strong>（読むことと、保存だけ）。</p>
+          </li>
+        </ul>
+        <p class="know-box__more"><a href="#check">実際に動かして確認した内容です</a></p>
+      </div>
+
+      <details class="toc">
+        <summary>目次を開く</summary>
+        <ol>
+          <li><a href="#quick">5ステップの全体像</a></li>
+          <li><a href="#about">AIチームって何？</a></li>
+          <li><a href="#prepare">準備</a></li>
+          <li><a href="#make">チームを作る</a></li>
+          <li><a href="#run">チームに頼む</a></li>
+          <li><a href="#result">実際に動かした例</a></li>
+          <li><a href="#fix">手直しのしかた</a></li>
+          <li><a href="#safe">安全に使うコツ</a></li>
+          <li><a href="#next">もっと広げる</a></li>
+          <li><a href="#faq">困ったとき</a></li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 02 5ステップの全体像 ===== -->
+  <section class="section section--soft" id="quick" aria-labelledby="quick-heading">
+    <div class="section__inner reveal">
+      <h2 class="section__heading" id="quick-heading">5ステップの<br>全体像</h2>
+      <p class="section__desc">やることは、コピーして貼ることと、確認することだけです</p>
+      <ol class="step-list">
+        <li><span class="step-list__num">1</span><div><strong>練習用のフォルダを作る</strong><small>失敗しても困らない場所で試します</small></div></li>
+        <li><span class="step-list__num">2</span><div><strong>Claudeのデスクトップアプリで「Code」を開く</strong><small>左上の「&lt;/&gt;」のボタンです</small></div></li>
+        <li><span class="step-list__num">3</span><div><strong>「チームを作る文章」を貼る</strong><small>Claudeが、3人分の設定ファイルを作ってくれます</small></div></li>
+        <li><span class="step-list__num">4</span><div><strong>「/reel-team」でチームに頼む</strong><small>テーマと、参考にするリールの話を渡します</small></div></li>
+        <li><span class="step-list__num">5</span><div><strong>できた台本を確認して、手直しする</strong><small>投稿するかどうかは、自分で決めます</small></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 03 AIチームって何？ ===== -->
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <div class="section__inner reveal">
+      <h2 class="section__heading" id="about-heading">AIチームって<br>何？</h2>
+      <div class="prose">
+        <p>1人のAIに、全部を一度に頼むと、どこが良くてどこが弱いのか、分かりにくくなります。そこで、<strong>役割を分けた3人</strong>に、順番に頼みます。前の人の結果を、次の人が受け取る流れです。</p>
+      </div>
+      <ol class="team-flow" aria-label="3人のチームの流れ">
+        <li class="team-card">
+          <p class="team-card__role">1　リサーチ担当</p>
+          <p class="team-card__do"><strong>やること：</strong>参考リールの話を読んで、冒頭のひとこと・話す順番・最後の誘導を書き出す</p>
+          <p class="team-card__dont"><strong>やらないこと：</strong>感想や推測を足すこと</p>
+        </li>
+        <li class="team-flow__arrow" aria-hidden="true">↓</li>
+        <li class="team-card">
+          <p class="team-card__role">2　分析担当</p>
+          <p class="team-card__do"><strong>やること：</strong>なぜ見られそうかを3つ、理由つきで分析する</p>
+          <p class="team-card__dont"><strong>やらないこと：</strong>数字を推測で書くこと</p>
+        </li>
+        <li class="team-flow__arrow" aria-hidden="true">↓</li>
+        <li class="team-card team-card--main">
+          <p class="team-card__role">3　台本担当</p>
+          <p class="team-card__do"><strong>やること：</strong>あなたのテーマで台本を書く。書いたあとに、参考リールとの言葉の重なりを自分で見直す</p>
+          <p class="team-card__dont"><strong>やらないこと：</strong>参考リールの言い回しを、そのまま使うこと</p>
+        </li>
+      </ol>
+      <div class="note-box">
+        <p class="note-box__label">使うのは「型」だけ</p>
+        <p>参考にするのは、話す順番や引きつけ方といった「型」です。言葉や中身のまねはしません。ほかの人の作品を、そのまま写すことは避けましょう。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 04 準備 ===== -->
+  <section class="section section--soft" id="prepare" aria-labelledby="prepare-heading">
+    <div class="section__inner reveal">
+      <p class="step-label">STEP 1・2</p>
+      <h2 class="section__heading" id="prepare-heading">準備</h2>
+      <p class="tag-row"><span class="tag tag--paid">有料プラン</span><span class="tag tag--desktop">デスクトップ版</span></p>
+      <ol class="numbered-steps">
+        <li><strong>練習用のフォルダを作る</strong>：デスクトップなどに、「AIチーム練習」という名前の空のフォルダを作ります。大事なファイルは入れません。</li>
+        <li><strong>デスクトップアプリを開く</strong>：まだの人は、<a href="https://claude.com/download" target="_blank" rel="noopener noreferrer">claude.com/download</a> から入れて、ログインします。</li>
+        <li><strong>「Code」を開く</strong>：画面の左上にある「&lt;/&gt;」のボタンです。</li>
+        <li><strong>作業するフォルダとして、「AIチーム練習」を選ぶ</strong>：Claudeは、選んだフォルダの中だけを扱います。</li>
+      </ol>
+      <div class="note-box">
+        <p class="note-box__label">画面の名前は変わることがあります</p>
+        <p>ボタンの名前や場所は、アプリの更新で変わることがあります。見つからないときは、<a href="https://code.claude.com/docs/en/desktop-quickstart" target="_blank" rel="noopener noreferrer">公式の始め方（英語）</a>で確認してください。ブラウザの翻訳機能で日本語にして読めます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 05 チームを作る ===== -->
+  <section class="section" id="make" aria-labelledby="make-heading">
+    <div class="section__inner reveal">
+      <p class="step-label">STEP 3</p>
+      <h2 class="section__heading" id="make-heading">チームを作る</h2>
+      <div class="prose">
+        <p>下の文章をコピーして、「Code」の入力欄に貼って送ります。<span class="fill">〈 〉</span>の部分は、自分の内容に書き換えてください。</p>
+      </div>
+      <div class="prompt-box">
+        <p class="prompt-box__title">プロンプト①　AIチームを作る</p>
+        <pre class="prompt-box__text" id="p-make">このフォルダに、Instagramリール台本づくりのAIチームを作ってください。
+
+【チームの3人】
+それぞれ専用のサブエージェントとして .claude/agents に作ります。
+1. リサーチ担当（reel-research）：私が渡す参考リールの文字起こしを読み、「冒頭のひとこと」「話す順番」「最後の誘導」を、事実だけ書き出す。書かれていないことは足さない。
+2. 分析担当（reel-analysis）：リサーチ結果を読み、なぜ見られそうかを3つ、理由つきで分析する。
+3. 台本担当（reel-script）：分析と、私が渡す「作りたいテーマ」をもとに、私のアカウント向けの台本を書く。話の中身と具体例は、作りたいテーマのものにする。参考リールからは「型」（話す順番や引きつけ方）だけを使い、言い回しは使わない。
+アカウントの条件（ジャンル・読む人・口調）は、各担当のファイルには書かず、CLAUDE.md だけに書いて、そこを読んで使う。
+
+【呼び出し用のコマンド】
+.claude/skills/reel-team/SKILL.md を作り、/reel-team と入力したら、3人が「リサーチ→分析→台本」の順に、1人ずつ動くようにします。
+入力は、「作りたいテーマ」と「参考リールの文字起こし」の2つです。例：/reel-team テーマ：〇〇（改行して）文字起こしの全文
+結果は outputs フォルダに、01_research.md、02_analysis.md、03_script.md として保存します。
+
+【私のこと】（CLAUDE.md に書く）
+・発信ジャンル：〈例：在宅ワーク×AI〉
+・見てほしい人：〈例：40代の働くママ〉
+・口調：〈例：やわらかい話し言葉〉
+
+【守ること】
+・台本担当は、書いたあとに自分で見直し、参考リールと8文字以上同じ並びの言葉が入っていたら、書き直す
+・投稿や送信、外部サービスへの接続はしない（読むことと、outputsへの保存だけ）
+・作り終えたら、作ったファイルの一覧を教えてください</pre>
+        <button class="btn btn--primary copy-btn" type="button" data-copy-target="p-make"><span class="copy-btn__label">プロンプトをコピーする</span><span class="copy-btn__done">コピーしました</span></button>
+        <p class="copy-status" role="status" aria-live="polite"></p>
+      </div>
+      <p class="fill-hint"><span class="fill">〈 〉</span>は、自分のアカウントの内容に書き換えてから送ってください。</p>
+      <h3 class="sub-heading">送ったあとに起きること</h3>
+      <ol class="numbered-steps">
+        <li>Claudeが、次の<strong>5つのファイル</strong>を作ります（すべて、ふつうの文章のファイルです）。</li>
+        <li>「<strong>.claude</strong>」という場所に書いてよいか、確認が出ることがあります。何を書くのか読んで、よければ「許可」を押します。</li>
+        <li>作り終えたら、<strong>新しい会話を開きます</strong>（作ったチームを確実に読み込むためです）。</li>
+      </ol>
+      <ul class="file-list">
+        <li><code>CLAUDE.md</code><span>あなたのアカウントのこと（ジャンル・読む人・口調）。台本担当が読みます</span></li>
+        <li><code>.claude/agents/reel-research.md</code><span>リサーチ担当の説明書</span></li>
+        <li><code>.claude/agents/reel-analysis.md</code><span>分析担当の説明書</span></li>
+        <li><code>.claude/agents/reel-script.md</code><span>台本担当の説明書</span></li>
+        <li><code>.claude/skills/reel-team/SKILL.md</code><span>「/reel-team」と入力したときの、動かす順番</span></li>
+      </ul>
+      <div class="note-box">
+        <p class="note-box__label">中身は、読んで確認できます</p>
+        <p>ここで作るのは、動かすプログラムではなく、<strong>文章のファイル</strong>だけです。気になるときは、Claudeに「作ったファイルを、やさしい言葉で説明してください」と頼めば、読み解いてくれます。担当には、ファイルを読む力だけを持たせ、書き込みや外部への接続はさせません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 06 チームに頼む ===== -->
+  <section class="section section--soft" id="run" aria-labelledby="run-heading">
+    <div class="section__inner reveal">
+      <p class="step-label">STEP 4</p>
+      <h2 class="section__heading" id="run-heading">チームに頼む</h2>
+      <div class="prose">
+        <p>新しい会話で、入力欄に「/」を打つと、「reel-team」が候補に出ます。下の形で、テーマと参考リールの話を渡します。</p>
+      </div>
+      <div class="prompt-box">
+        <p class="prompt-box__title">プロンプト②　チームに台本づくりを頼む</p>
+        <pre class="prompt-box__text" id="p-run">/reel-team テーマ：〈例：AIでメールの返信文を10分で作る方法〉
+〈ここに、参考にするリールの文字起こしを貼る。文字起こしが無いときは、話の流れを自分でメモしたものでもOK〉</pre>
+        <button class="btn btn--primary copy-btn" type="button" data-copy-target="p-run"><span class="copy-btn__label">プロンプトをコピーする</span><span class="copy-btn__done">コピーしました</span></button>
+        <p class="copy-status" role="status" aria-live="polite"></p>
+      </div>
+      <h3 class="sub-heading">参考リールの話は、どう用意する？</h3>
+      <ul class="check-list">
+        <li>気になったリールを見て、<strong>話の流れを自分でメモ</strong>する（いちばん簡単で、安全です）</li>
+        <li>自分で用意した、文字起こしを貼る</li>
+      </ul>
+      <div class="note-box note-box--warn">
+        <p class="note-box__label">自動で集めるのは、おすすめしません</p>
+        <p>Instagramは、許可のない自動のデータ収集を、利用規約で禁止しています。参考にするリールは、<strong>あなたが選んで</strong>渡してください。</p>
+      </div>
+      <p class="tag-row-left"><span class="tag tag--small-note">待ち時間：数十秒から数分</span><span class="tag tag--small-note">普通のチャットより、利用枠を多く使います</span></p>
+    </div>
+  </section>
+
+  <!-- ===== CTA① ===== -->
+  <section class="section cta-mid" id="cta-mid" aria-labelledby="cta-mid-heading">
+    <div class="section__inner reveal">
+      <div class="cta-card cta-card--light">
+        <h2 class="cta-card__heading" id="cta-mid-heading">AIに任せられる仕事を、<br>もっと増やしたい人へ</h2>
+        <div class="prose">
+          <p>チームで動かす感覚が、つかめてきたのではないでしょうか。</p>
+          <p>AIを仕事につなげる方法や、初心者さん向けの活用術を<strong class="cta-card__highlight">『AIマネタイズの教科書』</strong>にまとめています。無料で受け取れます。</p>
+        </div>
+        <a class="btn btn--primary btn--large" href="#cta" target="_blank" rel="noopener noreferrer" data-line-link data-cta="mid" hidden>『AIマネタイズの教科書』を見てみる</a>
+        <p class="cta-card__note">受け取りは任意です。このまま下に進んでも、最後まで読めます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 07 実際に動かした例 ===== -->
+  <section class="section" id="result" aria-labelledby="result-heading">
+    <div class="section__inner reveal">
+      <h2 class="section__heading" id="result-heading">実際に動かした例</h2>
+      <p class="section__desc">テスト用の架空のリール（晩ごはんの献立の話）を参考に、別のテーマで頼んだ結果です</p>
+      <div class="example">
+        <p class="example__title">頼んだこと</p>
+        <p class="example__body">テーマ：AIでメールの返信文を10分で作る方法</p>
+      </div>
+      <h3 class="sub-heading">1人目：リサーチ担当の結果（一部）</h3>
+      <div class="example">
+        <p class="example__body"><strong>冒頭のひとこと</strong><br>「毎日の晩ごはん、何にするか決めるだけで疲れていませんか。」</p>
+        <p class="example__body"><strong>話す順番</strong><br>1. 晩ごはんの悩みを投げかける<br>2. 話し手の体験を伝える<br>3. やり方が3つだと示す<br>（…全部で9項目）</p>
+        <p class="example__body"><strong>最後の誘導</strong><br>保存を促して、プロフィールのリンクへ案内している</p>
+      </div>
+      <h3 class="sub-heading">2人目：分析担当の結果（一部）</h3>
+      <div class="example">
+        <ul class="check-list">
+          <li>冒頭が、毎日の小さな疲れを言い当てている</li>
+          <li>「3つだけ」と数を先に言い、中身も軽い</li>
+          <li>結果が先に見え、保存とリンクへの誘導が自然につながる</li>
+        </ul>
+        <p class="example__body">※再生数などの数字は渡していないため、「実際の反応の裏づけはありません」と書き添えてありました。</p>
+      </div>
+      <h3 class="sub-heading">3人目：台本担当の結果</h3>
+      <div class="example example--script">
+        <p class="example__body"><strong>冒頭のひとこと</strong><br>メールの返信、書き出しで手が止まってしまうこと、ありませんか。</p>
+        <p class="example__body"><strong>本編</strong><br>わたしはAIを使い始めてから、返信文に悩む時間がぐっと短くなりました。<br>ポイントは3つに絞りました。<br>まず、届いたメールをそのまま貼り付けます。<br>次に、返信でいちばん伝えたいことを、短く書いて渡します。<br>最後に、丁寧めか、やわらかめか、雰囲気を決めて伝えます。<br>これだけで、そのまま送れそうな返信文が、10分もかからずにできあがります。</p>
+        <p class="example__body"><strong>最後の誘導</strong><br>あとで見返せるように、保存しておいてくださいね。<br>そのまま使える頼み方の例は、プロフィールから見られます。</p>
+      </div>
+      <div class="note-box">
+        <p class="note-box__label">台本担当の「見直し」</p>
+        <p>台本担当は、書いたあとに、参考リールと同じ言い回しがないかを自分で見直しました。このときは、初稿の3か所が参考リールと一致していたので、<strong>自分で書き直して</strong>から出してくれました。</p>
+      </div>
+      <div class="note-box">
+        <p class="note-box__label">毎回、同じ結果にはなりません</p>
+        <p>これは、1回動かしたときの結果です。台本は、あくまで「たたき台」です。自分の体験に合わせて、言い回しを直してから使ってください。効果や反応は、お約束できません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 08 手直し ===== -->
+  <section class="section section--soft" id="fix" aria-labelledby="fix-heading">
+    <div class="section__inner reveal">
+      <p class="step-label">STEP 5</p>
+      <h2 class="section__heading" id="fix-heading">手直しのしかた</h2>
+      <div class="prose">
+        <p>「もっとやさしくして」だけだと、全体が書き換わってしまいます。<strong>どこを、何が気になって、どうしたいか</strong>を伝えましょう。台本は、<code>outputs</code> フォルダの <code>03_script.md</code> に保存されています。</p>
+      </div>
+      <div class="prompt-box">
+        <p class="prompt-box__title">プロンプト③　台本を直してもらう</p>
+        <pre class="prompt-box__text" id="p-fix">outputs/03_script.md の台本の〈例：本編の3つ目〉が、〈例：少し難しい言い方〉になっています。〈例：もっとやさしい言葉〉に直してください。
+ほかの部分は変えないでください。</pre>
+        <button class="btn btn--primary copy-btn" type="button" data-copy-target="p-fix"><span class="copy-btn__label">プロンプトをコピーする</span><span class="copy-btn__done">コピーしました</span></button>
+        <p class="copy-status" role="status" aria-live="polite"></p>
+      </div>
+      <p class="fill-hint"><span class="fill">〈 〉</span>は、自分の内容に書き換えてから送ってください。</p>
+      <div class="note-box">
+        <p class="note-box__label">直したあとのチェック</p>
+        <p>直したあとの台本は、<strong>参考リールとの言葉の重なりを、もう一度確認していません</strong>。台本の最後にある「見直し結果」の欄も、そのままです。大きく直したときは、もう一度、見直してもらいましょう。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 09 安全に使うコツ ===== -->
+  <section class="section" id="safe" aria-labelledby="safe-heading">
+    <div class="section__inner reveal">
+      <h2 class="section__heading" id="safe-heading">安全に使うコツ</h2>
+      <div class="prose"><p>次の6つだけ守ってください。チェックは、このブラウザに保存されます。</p></div>
+      <ul class="safety-list">
+        <li><label><input type="checkbox" data-progress="safe1"><span>最初は、練習用のフォルダで試す</span></label></li>
+        <li><label><input type="checkbox" data-progress="safe2"><span>許可の画面が出たら、何を書くのか読んでから許可する</span></label></li>
+        <li><label><input type="checkbox" data-progress="safe3"><span>投稿や送信は、必ず自分で内容を確認してから行う</span></label></li>
+        <li><label><input type="checkbox" data-progress="safe4"><span>参考リールは、自分で選んで渡す（自動で集めない）</span></label></li>
+        <li><label><input type="checkbox" data-progress="safe5"><span>参考にするのは「型」だけ。言葉や中身をそのまま使わない</span></label></li>
+        <li><label><input type="checkbox" data-progress="safe6"><span>パスワードやカード番号など、大事な情報は渡さない</span></label></li>
+      </ul>
+      <p class="progress-count" aria-live="polite">チェック済み <span data-count-for="safe">0</span> / 6</p>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 10 もっと広げる ===== -->
+  <section class="section section--soft" id="next" aria-labelledby="next-heading">
+    <div class="section__inner reveal">
+      <h2 class="section__heading" id="next-heading">もっと広げる</h2>
+      <div class="prose">
+        <p>同じ作り方で、役割を入れ替えれば、別のチームも作れます。たとえば、次のような分け方です。</p>
+      </div>
+      <ul class="check-list">
+        <li>note記事：調べる → 構成を考える → 書く</li>
+        <li>Webページ：設計する → デザインする → 作る → 確かめる</li>
+        <li>データの分析：数字を読む → 気になる点を探す → まとめる</li>
+      </ul>
+      <p class="muted">この「3人のリール台本チーム」で動かした流れを、まず1回、体験してみてください。</p>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 11 困ったとき ===== -->
+  <section class="section" id="faq" aria-labelledby="faq-heading">
+    <div class="section__inner reveal">
+      <h2 class="section__heading" id="faq-heading">困ったとき</h2>
+      <div class="faq">
+        <details>
+          <summary>「/」を打っても、reel-teamが出ません。</summary>
+          <p>作り終えたあとに、<strong>新しい会話</strong>を開いてから、もう一度「/」を打ってみてください。それでも出ないときは、作業するフォルダが「AIチーム練習」になっているか確認してください。</p>
+        </details>
+        <details>
+          <summary>無料版でもできますか？</summary>
+          <p>できません。チームを作る機能（Claude Code）は、Pro以上の有料プランが対象です。料金は<a href="https://claude.com/pricing" target="_blank" rel="noopener noreferrer">料金ページ</a>で確認してください。</p>
+        </details>
+        <details>
+          <summary>許可の画面が出て、不安です。</summary>
+          <p>わからないまま許可する必要はありません。「何をするための許可ですか？変更する場所と、元に戻せるかを、日本語で説明してください」と聞いて、納得してから許可してください。</p>
+        </details>
+        <details>
+          <summary>参考リールの文字起こしがありません。</summary>
+          <p>リールを見ながら、話の流れを、自分の言葉でメモすれば大丈夫です。「冒頭のひとこと」「話す順番」「最後の誘導」が分かる程度で足ります。</p>
+        </details>
+        <details>
+          <summary>台本が、毎回違います。</summary>
+          <p>AIの答えは、毎回少しずつ変わります。気に入った台本は、保存しておきましょう。直したい所は、「手直しのしかた」の文章で伝えると、近づきます。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 12 確認した内容・公式情報 ===== -->
+  <section class="section section--soft" id="check" aria-labelledby="check-heading">
+    <div class="section__inner reveal">
+      <h2 class="section__heading" id="check-heading">確認した内容<br><small class="section__small">2026年10月7日</small></h2>
+      <ul class="check-list">
+        <li>このガイドの文章（プロンプト①②）で、3人のチームを作り、実際に動かして、台本ができることを確認しました。</li>
+        <li>確認は、Claude Codeで行いました。デスクトップアプリでの許可の画面は、お使いの設定で表示が違うことがあります。</li>
+        <li>3人は、順番に動き、ファイルを読む力だけを持ちます（書き込みや外部への接続はしません）。</li>
+      </ul>
+      <ul class="link-list">
+        <li><a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener noreferrer">サブエージェント（役割を分けたAI）の公式説明（英語）</a></li>
+        <li><a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener noreferrer">スキル（「/」で呼び出す手順書）の公式説明（英語）</a></li>
+        <li><a href="https://code.claude.com/docs/en/desktop-quickstart" target="_blank" rel="noopener noreferrer">デスクトップアプリの始め方（英語）</a></li>
+        <li><a href="https://help.instagram.com/581066165581870/" target="_blank" rel="noopener noreferrer">Instagramの利用規約</a></li>
+      </ul>
+      <div class="note-box">
+        <p class="note-box__label">機能や料金は変わることがあります</p>
+        <p>Claudeは頻繁に更新されます。画面の表示や対象プランが、このガイドと違う場合は、公式の最新情報を優先してください。このガイドは、効果や成果をお約束するものではありません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA② ===== -->
+  <section class="section" id="cta" aria-labelledby="cta-heading">
+    <div class="section__inner reveal">
+      <div class="cta-card">
+        <h2 class="cta-card__heading" id="cta-heading">40代からでも、<br>働き方は変えられる。</h2>
+        <div class="prose">
+          <p>AIをチームで動かせるようになると、時間に少し余裕が生まれます。私も40代からAIを使って、いろいろな仕事に挑戦しています。</p>
+          <p>
+            「AIを使って家で働きたい」<br>
+            「今より収入の柱を増やしたい」<br>
+            そんな方に向けて、AI初心者さんでもAIを仕事に活かす考え方や方法をまとめた<br>
+            <strong class="cta-card__highlight">『AIマネタイズの教科書』</strong><br>
+            も無料でご用意しています。
+          </p>
+        </div>
+        <img src="assets/images/cta-textbook-contents.png" alt="AIマネタイズの教科書 5大特典。1 いま一番始めやすいAIマネタイズ手法、2 ChatGPT収益化プロンプト3選、3 AIマネタイズ神テンプレート、4 マネタイズのための生成AIツール3選、5 AI×SNSで収益を生むリアル事例" class="cta-card__contents">
+        <div class="prose">
+          <p>
+            また、「何から始めたらいいのかわからない」「自分には何が向いているのか相談したい」<br>
+            という方に向けて、<strong class="cta-card__highlight">AI収益化サポート会</strong>も実施中です。<br>
+            個別でのご相談も、下のLINEから受け付けています。
+          </p>
+          <p>一緒に新しいことに挑戦していきましょう！</p>
+        </div>
+        <a class="cta-card__banner-link" href="#cta" target="_blank" rel="noopener noreferrer" aria-label="AIマネタイズの教科書を受け取る" data-line-link data-cta="bottom-banner" hidden>
+          <img src="assets/images/cta-banner.png" alt="無料プレゼント AIマネタイズ教科書。AIで働き方の選択肢を広げたい方へ。LINE登録はこちら" class="cta-card__banner-img">
+        </a>
+        <a class="btn btn--primary btn--large" href="#cta" target="_blank" rel="noopener noreferrer" data-line-link data-cta="bottom" hidden>
+          AIを仕事につなげる方法を見てみる
+        </a>
+        <p class="cta-card__note">LINEで無料で受け取れます</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© MION</p>
+  <p>このページの無断転載・複製はご遠慮ください。</p>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn--primary sticky-cta__btn" href="#cta" target="_blank" rel="noopener noreferrer" data-line-link data-cta="sticky" hidden>
+    <svg class="sticky-cta__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.6 6.2-.1.9-.5 2.4-1.4 3.5 0 0 2.7-.3 4.7-1.7.9.2 1.9.3 3.1.3 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+    <span>LINEに登録して「AIマネタイズの教科書」を受け取る</span>
+  </a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
