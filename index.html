@@ -71,7 +71,7 @@
       <p class="section__desc">やることは、コピーして貼ることと、確認することだけです</p>
       <ol class="step-list">
         <li><span class="step-list__num">1</span><div><strong>練習用のフォルダを作る</strong><small>失敗しても困らない場所で試します</small></div></li>
-        <li><span class="step-list__num">2</span><div><strong>Claudeのデスクトップアプリで「Code」を開く</strong><small>左上の「&lt;/&gt;」のボタンです</small></div></li>
+        <li><span class="step-list__num">2</span><div><strong>Claudeのデスクトップアプリで「Code」を開き、フォルダを選ぶ</strong><small>左上の「&lt;/&gt;」のボタンです。入力欄の上の「フォルダなし」から、作ったフォルダを選びます</small></div></li>
         <li><span class="step-list__num">3</span><div><strong>「チームを作る文章」を貼る</strong><small>Claudeが、3人分の設定ファイルを作ってくれます</small></div></li>
         <li><span class="step-list__num">4</span><div><strong>「/reel-team」でチームに頼む</strong><small>テーマと、参考にするリールの話を渡します</small></div></li>
         <li><span class="step-list__num">5</span><div><strong>できた台本を確認して、手直しする</strong><small>投稿するかどうかは、自分で決めます</small></div></li>
@@ -122,8 +122,21 @@
         <li><strong>練習用のフォルダを作る</strong>：デスクトップなどに、「AIチーム練習」という名前の空のフォルダを作ります。大事なファイルは入れません。</li>
         <li><strong>デスクトップアプリを開く</strong>：まだの人は、<a href="https://claude.com/download" target="_blank" rel="noopener noreferrer">claude.com/download</a> から入れて、ログインします。</li>
         <li><strong>「Code」を開く</strong>：画面の左上にある「&lt;/&gt;」のボタンです。</li>
-        <li><strong>作業するフォルダとして、「AIチーム練習」を選ぶ</strong>：Claudeは、選んだフォルダの中だけを扱います。</li>
+        <li><strong>作業するフォルダを選ぶ</strong>：入力欄のすぐ上に、「ローカル」と「フォルダなし」と書かれたボタンがあります。「フォルダなし」を押して、メニューの「フォルダを開く…」を選びます。</li>
+        <li><strong>「AIチーム練習」を選ぶ</strong>：パソコンの画面が開くので、デスクトップの「AIチーム練習」を選んで、決定します。Claudeは、選んだフォルダの中だけを扱います。</li>
       </ol>
+      <figure class="shot">
+        <a class="shot__link" href="assets/images/shot-code-folder-menu.jpg" target="_blank" rel="noopener noreferrer">
+          <span class="shot__frame" style="--ratio:660 / 367"><img class="shot__img" src="assets/images/shot-code-folder-menu.jpg" loading="lazy" decoding="async" alt="「Code」の入力欄の上にある「フォルダなし」のボタンを押すと、「フォルダなし」「最近」「フォルダを開く…」のメニューが開く"><span class="shot__mark" style="--x:1.2%;--y:84.7%;--w:33.5%;--h:12%"></span><span class="shot__mark" style="--x:3%;--y:66.8%;--w:88%;--h:11%"></span></span>
+        </a>
+        <figcaption>手順4の画面です。赤い枠の「フォルダなし」を押すと、メニューが開きます。その中の「フォルダを開く…」を選びます。「最近」の欄は、人によって違います。デスクトップアプリの画面です（2026年10月8日）。</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot__link" href="assets/images/shot-finder-folder.jpg" target="_blank" rel="noopener noreferrer">
+          <span class="shot__frame" style="--ratio:1160 / 528"><img class="shot__img" src="assets/images/shot-finder-folder.jpg" loading="lazy" decoding="async" alt="パソコンのフォルダ選択の画面。デスクトップの中に「AIチーム練習」のフォルダがある"><span class="shot__mark" style="--x:32.5%;--y:37.5%;--w:14.8%;--h:37%"></span></span>
+        </a>
+        <figcaption>手順5の画面です。デスクトップの「AIチーム練習」を選びます。Macの画面です（2026年10月8日）。Windowsでは、見た目が少し違います。</figcaption>
+      </figure>
       <div class="note-box">
         <p class="note-box__label">画面の名前は変わることがあります</p>
         <p>ボタンの名前や場所は、アプリの更新で変わることがあります。見つからないときは、<a href="https://code.claude.com/docs/en/desktop-quickstart" target="_blank" rel="noopener noreferrer">公式の始め方（英語）</a>で確認してください。ブラウザの翻訳機能で日本語にして読めます。</p>
@@ -138,6 +151,10 @@
       <h2 class="section__heading" id="make-heading">チームを作る</h2>
       <div class="prose">
         <p>下の文章をコピーして、「Code」の入力欄に貼って送ります。<span class="fill">〈 〉</span>の部分は、自分の内容に書き換えてください。</p>
+      </div>
+      <div class="note-box note-box--warn">
+        <p class="note-box__label">送る前に、確認</p>
+        <p>入力欄の上のボタンが<strong>「フォルダなし」のまま</strong>のときは、まだフォルダが選ばれていません。準備の手順4・5で、「AIチーム練習」を選んでから送ってください。文章の最初にある「このフォルダ」は、選んだフォルダのことです。</p>
       </div>
       <div class="prompt-box">
         <p class="prompt-box__title">プロンプト①　AIチームを作る</p>
@@ -333,6 +350,10 @@
     <div class="section__inner reveal">
       <h2 class="section__heading" id="faq-heading">困ったとき</h2>
       <div class="faq">
+        <details>
+          <summary>「フォルダなし」と表示されたままです。</summary>
+          <p>入力欄の上の「フォルダなし」を押して、メニューの「フォルダを開く…」を選び、「AIチーム練習」を選んでください。フォルダを選んでから、文章を送ります。</p>
+        </details>
         <details>
           <summary>「/」を打っても、reel-teamが出ません。</summary>
           <p>作り終えたあとに、<strong>新しい会話</strong>を開いてから、もう一度「/」を打ってみてください。それでも出ないときは、作業するフォルダが「AIチーム練習」になっているか確認してください。</p>
